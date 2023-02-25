@@ -1,5 +1,5 @@
 name: string_to_widgets
-description: A new Flutter package project.
+description: Get a list of widgets from a string by splitting the string at the notation blocks as per switch case statement and notations referencing the widgets.
 version: 0.0.1
 homepage: https://github.com/tarakparab/string_to_widgets
 

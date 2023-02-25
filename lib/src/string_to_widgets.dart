@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 List<Widget> stringToWidgets(
-    {required String statement,
+    {required String text,
     required List<String> notations,
     required BuildContext context,
     required Widget Function(int widgetIndex, String string, BuildContext S)
@@ -9,33 +9,29 @@ List<Widget> stringToWidgets(
   final startNotations = <String>[];
   final endNotations = <String>[];
 
-  //FIXME Logic when the notation is not present in the statement
-  //FIXME Logic when the notation(s) do not match with the ones in the statement
-  //FIXME Logic when some of the notations in statement are not present in the list of notations
-
   for (var notation in notations) {
     startNotations.add('/start$notation');
     endNotations.add('/$notation');
   }
-  statement = statement.replaceAll('/start', '/begin/start');
-  statement = statement.replaceAll('/end', '/end/');
+  text = text.replaceAll('/start', '/begin/start');
+  text = text.replaceAll('/end', '/end/');
 
-  final firstSplitTexts = statement.split('/begin');
+  final firstSplitTexts = text.split('/begin');
 
   final secondSplitTexts = <String>[];
 
-  for (var text in firstSplitTexts) {
-    if (!text.contains('/end')) {
-      secondSplitTexts.add(text.trim());
+  for (var splitStr in firstSplitTexts) {
+    if (!splitStr.contains('/end')) {
+      secondSplitTexts.add(splitStr.trim());
     } else {
-      final splitText = text.split('/end');
+      final str = splitStr.split('/end');
 
-      secondSplitTexts.add(splitText[0].trim());
+      secondSplitTexts.add(str[0].trim());
 
       for (final endNotation in endNotations) {
-        if (splitText[1].contains(endNotation)) {
-          final text = splitText[1].replaceFirst(endNotation, '').trim();
-          secondSplitTexts.add(text);
+        if (str[1].contains(endNotation)) {
+          final splitStr = str[1].replaceFirst(endNotation, '').trim();
+          secondSplitTexts.add(splitStr);
         }
       }
     }

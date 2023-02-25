@@ -1,7 +1,7 @@
 name: string_to_widgets
 description: A new Flutter package project.
 version: 0.0.1
-homepage: 
+homepage: https://github.com/tarakparab/string_to_widgets
 
 environment:
   sdk: '>=2.19.2 <3.0.0'
